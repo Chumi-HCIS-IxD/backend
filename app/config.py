@@ -13,7 +13,7 @@ class Config:
     JWT_TOKEN_LOCATION = ["headers"]  # 指定從 HTTP 標頭中讀取 Token，可加上 "cookies", "json", "query_string" 等
     
     # Firebase 相關
-    FIREBASE_CREDENTIAL = os.environ.get('FIREBASE_CREDENTIAL_PATH', '/home/p76111597/zhungLun/chumi/app/serviceAccountKey.json')
+    FIREBASE_CREDENTIAL = os.environ.get('FIREBASE_CREDENTIAL_PATH', '../chumi/app/serviceAccountKey.json')
 
     # 如需其他設定，也可繼續補充 (e.g., DATABASE_URL, DEBUG 等等)
     # ...
