@@ -1,10 +1,11 @@
 # app/models.py
 from app.extensions import get_firestore_client
-
+from firebase_admin import firestore
 # 取得 Firestore 客戶端
 db = get_firestore_client()
 
 class User:
+    collection_name = 'users'
     @classmethod
     def get_by_uid(cls, uid):
         """
@@ -43,3 +44,13 @@ class User:
         new_doc = users_ref.document(uid)
         new_doc.set(user_data)
         return uid
+    @classmethod
+    def add_record(cls, uid, entry: dict):
+        """
+        將一筆 entry append 到 users/{uid}.record 陣列裡
+        """
+        doc_ref = db.collection(cls.collection_name).document(uid)
+        # 使用 Firestore ArrayUnion 可以在不覆蓋既有陣列的情況下 append
+        doc_ref.update({
+            'record': firestore.ArrayUnion([entry])
+        })
