@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.api import auth, users, main, mcq,results
+from app.api import auth, users, main, mcq,results,room
 
 def register_api_blueprints(app):
     # 註冊 auth 模組，前綴 /api/auth
